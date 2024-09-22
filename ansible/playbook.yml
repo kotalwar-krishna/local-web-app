@@ -18,7 +18,7 @@
         name: krishnakotalwar/local-web-app
         tag: latest
         state: absent
-      ignore_errors: yes  # Optional: Continue if the image does not exist
+      ignore_errors: yes
 
     - name: Pull latest Docker image
       community.docker.docker_image:
