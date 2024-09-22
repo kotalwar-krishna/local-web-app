@@ -8,16 +8,23 @@
     - name: Gather facts
       setup:
 
+    - name: Stop existing container if running
+      community.docker.docker_container:
+        name: local-web-app
+        state: absent
+
+    - name: Remove existing Docker image
+      community.docker.docker_image:
+        name: krishnakotalwar/local-web-app
+        tag: latest
+        state: absent
+      ignore_errors: yes  # Optional: Continue if the image does not exist
+
     - name: Pull latest Docker image
       community.docker.docker_image:
         name: krishnakotalwar/local-web-app
         tag: latest
         source: pull
-
-    - name: Stop existing container if running
-      community.docker.docker_container:
-        name: local-web-app
-        state: absent
 
     - name: Start the Docker container
       community.docker.docker_container:
