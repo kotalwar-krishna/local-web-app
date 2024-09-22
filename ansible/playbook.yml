@@ -1,0 +1,32 @@
+---
+- name: Deploy test web application
+  hosts: webserver
+  become: true
+  gather_facts: yes
+  vars:
+    ansible_ssh_user: krishna
+    ansible_ssh_password: Krishna@123
+    ansible_port: 11782
+
+  tasks:
+    - name: Gather facts
+      setup:
+
+    - name: Pull latest Docker image
+      community.docker.docker_image:
+        name: local-web-app
+        tag: latest
+        source: pull
+
+    - name: Stop existing container if running
+      community.docker.docker_container:
+        name: local-web-app
+        state: absent
+
+    - name: Start the Docker container
+      community.docker.docker_container:
+        name: local-web-app
+        image: simple-web-app:latest
+        ports:
+          - "80:80"
+        state: started

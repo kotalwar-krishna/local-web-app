@@ -49,3 +49,11 @@ jobs:
       - name: Push Docker image
         run: docker tag local-web-app krishnakotalwar/local-web-app:latest && docker push krishnakotalwar/local-web-app:latest
 
+      - name: Install Ansible
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ansible
+
+      - name: Run Ansible playbook
+        run: ANSIBLE_HOST_KEY_CHECKING=False ansible-playbook -i ansible/hosts.ini ansible/playbook.yml --extra-vars "ansible_sudo_pass=Krishna@123"
+
