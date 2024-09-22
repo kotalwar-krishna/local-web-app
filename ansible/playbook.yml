@@ -14,7 +14,7 @@
 
     - name: Pull latest Docker image
       community.docker.docker_image:
-        name: local-web-app
+        name: krishnakotalwar/local-web-app
         tag: latest
         source: pull
 
