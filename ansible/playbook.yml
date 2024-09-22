@@ -26,7 +26,7 @@
     - name: Start the Docker container
       community.docker.docker_container:
         name: local-web-app
-        image: simple-web-app:latest
+        image: local-web-app:latest
         ports:
           - "80:80"
         state: started
