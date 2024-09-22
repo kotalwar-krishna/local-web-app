@@ -20,12 +20,12 @@
 
     - name: Stop existing container if running
       community.docker.docker_container:
-        name: krishnakotalwar/local-web-app
+        name: local-web-app
         state: absent
 
     - name: Start the Docker container
       community.docker.docker_container:
-        name: krishnakotalwar/local-web-app
+        name: local-web-app
         image: krishnakotalwar/local-web-app:latest
         ports:
           - "80:80"
